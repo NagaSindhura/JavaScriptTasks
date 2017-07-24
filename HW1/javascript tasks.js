@@ -62,17 +62,28 @@ function rentalCarCost(d) {
   
 
 -----------------------------------------------
+comma delimited elements of the array 
+
+CONST DELIMITER = ',';
+
+var array = prompt("Please enter Array of elements");
+
+validateArray(array);
 
 function printArray(array){
-  //show me the code!
   var output = '';
+
   for(var i=0; i<array.length;i++)
   {
-   output = output + (array.length-1 == i ? array[i]  : array[i] + ',');
+   output = output + (array.length-1 == i ? array[i]  : array[i] + DELIMITER);
   }
- //console.log(output);
- //console.log(array.join());
-  
+
   return output;
-  
 }
+
+function validateArray(array)
+{
+	
+}
+
+

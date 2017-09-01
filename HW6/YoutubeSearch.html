@@ -1,10 +1,36 @@
 <html>
 <head>
     <title>Youtube Search Application</title>
+
 </head>
-<body>
-    <script src="//cdn.jsdelivr.net/bluebird/3.5.0/bluebird.min.js"></script>
+<body style="background : #ddd1e7;">
+
+    <template class="yt-template">
+        <div class="mainDiv">
+            <img class="yt-image">
+            <div class="title-div">
+                <a class="yt-title"></a>
+            </div>
+            <div class="sub-div">
+                <ul class="yt-ul">
+                    <li class="yt-description"></li>
+                    <li class="yt-publishedDate"></li>
+                </ul>
+            </div>
+        </div>
+    </template>
+
+
+    <template class="yt-Pagination">
+            <!--<button class="yt-PageNo"></button>-->
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/bluebird/3.5.0/bluebird.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+    <script src="js/searchElement.js" type="text/javascript"></script>
+    <script src="js/Pagination.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
+
+
 </body>
 </html>

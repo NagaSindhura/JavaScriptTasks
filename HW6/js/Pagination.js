@@ -1,48 +1,73 @@
 ﻿var Pagination = (function () {
-    function Pagination() {  };
+    function Pagination() { };
 
     Pagination.prototype.getMaxNumberOfVideosPerPage = function () {
-        //debugger;
         var windowInnerWidth = window.innerWidth;
         var requiredPixelPerPage = 370;
-
-        //alert(Math.floor((windowInnerWidth / requiredPixelPerPage)));
 
         return Math.floor((windowInnerWidth / requiredPixelPerPage));
     };
 
     Pagination.prototype.getMaxPageNumbers = function () {
-        //debugger;
         if (!page.totalVideos) {
-
             return 0;
-
         }
 
-        //alert(Math.floor((page.totalVideos.length / this.getMaxNumberOfVideosPerPage())));
-
-        return Math.floor((page.totalVideos.length / this.getMaxNumberOfVideosPerPage()));
+        return Math.ceil((page.totalVideos.length / this.getMaxNumberOfVideosPerPage()));
     }
 
-
     Pagination.prototype.setTotalVideos = function (videos) {
-        //debugger;
         page.totalVideos = (this.videos || []).concat(videos);
     }
 
     Pagination.prototype.getTotalVideos = function () {
-        //debugger;
         return page.totalVideos;
     }
 
     Pagination.prototype.setCurrentPageNumber = function (pageNumber) {
-        //debugger;
-        page.currentPageNumber = pageNumber || 1;
+        page.currentPageNumber = pageNumber;
     }
 
     Pagination.prototype.getCurrentPageNumber = function () {
-        //debugger;
         return page.currentPageNumber || 1;
+    }
+
+    Pagination.prototype.addPaginationLayout = function () {
+
+        var paginationGrid = document.createElement('div');
+        paginationGrid.setAttribute('id', 'pagination');
+        var paginationlayout = document.createElement('div');
+        paginationlayout.classList.add('paginationLayout');
+        var paginationFragment = document.createDocumentFragment();
+
+        var maxNumberPages = page.getMaxPageNumbers();
+
+        for (let pageNo = 0; pageNo < maxNumberPages; pageNo++) {
+
+            var pageElement = document.createElement("a");
+
+            var number = pageNo;
+            var currentPageNo = function () { return number + 1; };
+
+            pageElement.appendChild(document.createTextNode(currentPageNo()));
+            pageElement.setAttribute("id", "Page" + (currentPageNo()));
+            pageElement.setAttribute('href', '#');
+            pageElement.addEventListener("click", function () {
+                var cPageNo = pageNo;
+                var cClickPageNo = function () { return cPageNo + 1; };
+
+                page.setCurrentPageNumber(cClickPageNo());
+                ui.addYoutubeUIfunctionality();
+
+            });
+
+            paginationFragment.appendChild(pageElement);
+        }
+
+        paginationlayout.appendChild(paginationFragment);
+        paginationGrid.appendChild(paginationlayout);
+
+        return paginationGrid;
     }
 
     return Pagination;

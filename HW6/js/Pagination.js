@@ -9,15 +9,15 @@
     };
 
     Pagination.prototype.getMaxPageNumbers = function () {
-        if (!page.totalVideos) {
+        if (!this.totalVideos) {
             return 0;
         }
 
-        return Math.ceil((page.totalVideos.length / this.getMaxNumberOfVideosPerPage()));
+        return Math.ceil((this.totalVideos.length / this.getMaxNumberOfVideosPerPage()));
     }
 
     Pagination.prototype.setTotalVideos = function (videos) {
-        page.totalVideos = (this.videos || []).concat(videos);
+        this.totalVideos = (this.videos || []).concat(videos);
     }
 
     Pagination.prototype.getTotalVideos = function () {
@@ -29,7 +29,7 @@
     }
 
     Pagination.prototype.getCurrentPageNumber = function () {
-        return page.currentPageNumber || 1;
+        return this.currentPageNumber || 1;
     }
 
     Pagination.prototype.addPaginationLayout = function () {
